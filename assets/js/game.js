@@ -1,19 +1,20 @@
+// Game States
+// "WIN" - Player robot has defeated all enemy robots
+//    * Fight all enemy robots
+//    * Defeat each enemy robot
+// "LOSE" - Player robot's health is zero or less
 var playerName = window.prompt("What is your robots name?");
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
-
-
 //Enemy Stats
 var enemyName = "Roberto";
 var enemyHealth = 100;
 var enemyAttck = 10;
-console.log(playerName);
-
-fight(playerName);
+var enemyNames = ["Roborto","Amy Android", "Robo Trumble"];
 
 //This is how you make a function
-function fight(name){
+function fight(enemyName){
     window.alert("Welcome to robot gladiators");
     var promptFight = window.prompt("Would you like to Fight or Skip this battle");
     console.log(promptFight);
@@ -28,7 +29,7 @@ function fight(name){
         console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health left");
         // check enemy's health
         if (enemyHealth <= 0) {
-        window.alert(enemyName + " has died!");
+            window.alert(enemyName + " has died!");
         } 
         else {
             window.alert(enemyName + " still has " + enemyHealth + " health left.");
@@ -39,10 +40,10 @@ function fight(name){
 
         // check player's health
         if (playerHealth <= 0) {
-        window.alert(playerName + " has died!");
+            window.alert(playerName + " has died!");
         } 
         else {
-        window.alert(playerName + " still has " + playerHealth + " health left.");
+            window.alert(playerName + " still has " + playerHealth + " health left.");
         }
     }else if (promptFight === "skip" || promptFight === "SKIP") {
         var confirmSkip = window.confirm("Are you sure youd like to quit?");
@@ -56,4 +57,8 @@ function fight(name){
         window.alert("You need to pick a valid option. Try again!");
     }
     
+}
+
+for(var i = 0; i < enemyNames.length; i++){
+    fight(enemyNames[i]);
 }
