@@ -23,15 +23,11 @@ function fight(enemy){
         }
         console.log(promptFight);
         if(promptFight == "fight" || promptFight == "FIGHT"){
-            //Subtract the value of `playerInfo.attack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-            var damage = randomNumber(playerInfo.attack -3, playerInfo.attack);
+            var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
             enemy.health = Math.max(0,enemy.health - damage);
-            // Log a resulting message to the console so we know that it worked.
             console.log(playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health left");
-            // Subtract the value of `enemyAttack` from the value of `playerInfo.health` and use that result to update the value in the `playerInfo.health` variable.
             var damage = randomNumber(enemy.attack-3, enemy.attack);
             playerInfo.health = Math.max(0,playerInfo.health - damage);
-            // Log a resulting message to the console so we know that it worked.
             console.log(enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health left");
             // check enemy's health
             if (enemy.health <= 0) {
@@ -39,7 +35,7 @@ function fight(enemy){
                 break;
             } 
             else {
-                window.alert(enemy.hame + " still has " + enemy.health + " health left.");
+                window.alert(enemy.name + " still has " + enemy.health + " health left.");
             }
 
             // put new code under this
@@ -79,7 +75,7 @@ function shop(){
         
             // do nothing, so function will end
             break;
-          default:
+        default:
             window.alert("You did not pick a valid option. Try again.");
         
             // call shop() again to force player to pick a valid option
@@ -94,12 +90,14 @@ var randomNumber = function(min, max) {
 }
 function startGame(){
     //Reset player stats
+    console.log("Game Started!");
     playerInfo.reset();
     for(var i = 0; i < enemyInfo.length; i++){
         if(playerInfo.health > 0){
             window.alert("Welcome to robot gladiators! Round " + (i+1));
             var pickedEnemyObj = enemyInfo[i];
             pickedEnemyObj.health = randomNumber(40, 60);
+            // console.log("fighting picked enemy Name: " + pickedEnemyObj);
             fight(pickedEnemyObj);
             //If not last enemy
             if (playerInfo.health > 0 && i < enemyInfo.length - 1) {
@@ -138,14 +136,21 @@ var endGame = function(){
     }
 }
 
-
+function getPlayerName(){
+    var name = "";
+    while(name ==="" || name === null){
+        name = window.prompt("What is your robot's name?");
+        console.log("Inside planning");
+    }
+    return name;
+}
 var playerInfo = {
-    name : window.prompt("What is your robots name?"),
-    health : 100,
+    name : getPlayerName(),
+    health : 10,
     attack : 10,
     money : 10,
     reset: function(){
-        this.health = 100;
+        this.health = 10;
         this.money = 10;
         this.attack = 10;
     },
@@ -166,7 +171,7 @@ var playerInfo = {
         }
     }
 };
-//Enemy Stats
+// Enemy Stats
 
 var enemyInfo = [
     {
@@ -183,4 +188,6 @@ var enemyInfo = [
     }
 ];
 
+console.log("Hello there");
+window.alert("STOP!");
 startGame();
